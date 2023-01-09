@@ -1,0 +1,15 @@
+{
+    "name": "zhanjieyu/mv-ctest1",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "JYu1999",
+            "email": "jk29666338@gmail.com"
+        }
+    ],
+    "require": {}
+}
