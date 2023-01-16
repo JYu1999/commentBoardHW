@@ -49,6 +49,22 @@ class Database
         }
     }
 
+    public function applyDownMigrations()
+    {
+        $appliedMigrations = $this->getAppliedMigrations();
+        foreach (array_reverse($appliedMigrations) as $migration){
+            require_once Application::$ROOT_DIR.'/migrations/'.$migration;
+            $className = pathinfo($migration, PATHINFO_FILENAME);
+
+            $instance = new $className();
+            $this->log("Canceling migration $migration");
+            $instance->down();
+            $this->log("Canceled migration $migration");
+        }
+        $this->pdo->exec("DROP TABLE migrations;");
+        $this->log("Done down migrations");
+    }
+
     public function createMigrationsTable()
     {
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS migrations(

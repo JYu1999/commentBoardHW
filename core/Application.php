@@ -22,7 +22,7 @@ class Application
     //public ?Controller $controller = null;
     public function __construct($rootPath, array $config)
     {
-        $this->userClass = $config['userClass'];
+        $this->userClass = $config['userClass']??'';
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
