@@ -25,9 +25,7 @@ use app\core\Application;
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Create a new post</a>
-                </li>
+
 
 
             </ul>
@@ -42,13 +40,15 @@ use app\core\Application;
                 </li>
             </ul>
             <?php else:?>
-
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Create a new post</a>
+                    </li>
+
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/profile">Profile</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?>
                             (Logout)
