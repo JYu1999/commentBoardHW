@@ -57,9 +57,15 @@ class ContactForm extends DbModel
         $this->created_by = Application::$app->user->id;
         return parent::save();
     }
-    public function findPosts($user_id){
+    public function findPosts($user_id=null){
         $tableName = $this->tableName();
         //$statement = self::prepare("SELECT * FROM $tableName WHERE created_by=$user_id;");
+        if($user_id===null){
+            $statement = Application::$app->db->pdo->query("SELECT * FROM $tableName");
+            $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return $posts;
+        }
         $statement = Application::$app->db->pdo->query("SELECT * FROM $tableName WHERE created_by=$user_id");
         $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $posts;

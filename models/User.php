@@ -2,9 +2,11 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\DbModel;
 use app\core\Model;
 use app\core\UserModel;
+use PDO;
 
 class User extends UserModel
 
@@ -71,4 +73,17 @@ class User extends UserModel
     {
         return $this->firstname.' '.$this->lastname;
     }
+    public function getAdmin($id): bool
+    {
+        // TODO: Implement getAdmin() method.
+        $tableName = $this->tableName();
+        $statement = Application::$app->db->pdo->query("SELECT isAdmin FROM $tableName WHERE id=$id");
+        $user = $statement->fetch(PDO::FETCH_NUM);
+//        echo '<pre>';
+//        var_dump($user[0]);
+//        echo '</pre>';
+//        exit;
+        return $user[0];
+    }
+
 }

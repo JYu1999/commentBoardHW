@@ -31,8 +31,9 @@ $app = new Application(__DIR__, $config);
 
 if($argv[1]==="up"){
     $app->db->applyMigrations();
-}elseif ($argv[1]==="down"){
+}elseif ($argv[1]==="down") {
     $app->db->applyDownMigrations();
+}
 //    echo '<pre>';
 //    var_dump(Application::$app->session->destroySession());
 //    echo '</pre>';
