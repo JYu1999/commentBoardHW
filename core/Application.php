@@ -35,8 +35,13 @@ class Application
 
 
         $primaryValue = $this->session->get('user');
+//        echo '<pre>';
+//        var_dump($_SESSION);
+//        echo '</pre>';
+//        exit;
         if($primaryValue){
             $primaryKey =(new $this->userClass)->primaryKey();
+            
             $this->user = (new $this->userClass)->findOne([$primaryKey=>$primaryValue]);
         }
     }

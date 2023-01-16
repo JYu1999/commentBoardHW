@@ -2,13 +2,30 @@
 
 namespace app\models;
 
+use app\core\db\DbModel;
 use app\core\Model;
 
-class ContactForm extends Model
+class ContactForm extends DbModel
 {
     public string $subject = '';
     public string $email = '';
     public string $body = '';
+
+    public function tableName(): string
+    {
+        // TODO: Implement tableName() method.
+        return 'posts';
+    }
+    public function attributes(): array
+    {
+        // TODO: Implement attributes() method.
+        return ['subject', 'body'];
+    }
+    public function primaryKey(): string
+    {
+        // TODO: Implement primaryKey() method.
+        return 'post_id';
+    }
 
     public function rules():array
     {
@@ -30,6 +47,6 @@ class ContactForm extends Model
 
     public function send()
     {
-        return true;
+        return parent::save();
     }
 }

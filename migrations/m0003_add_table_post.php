@@ -5,9 +5,9 @@ class m0003_add_table_post{
     {
        $db = \app\core\Application::$app->db;
        $SQL = "CREATE TABLE posts(
-            id INT AUTO_INCREMENT PRIMARY KEY,
+            post_id INT AUTO_INCREMENT PRIMARY KEY,
             subject VARCHAR(255) NOT NULL,
-            content TEXT NOT NULL,
+            body TEXT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
        $db->pdo->exec($SQL);
