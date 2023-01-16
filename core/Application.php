@@ -4,6 +4,7 @@ namespace app\core;
 
 use app\core\db\Database;
 use app\core\db\DbModel;
+use app\models\ContactForm;
 
 class Application
 {
@@ -19,6 +20,7 @@ class Application
     public Session $session;
     public ?UserModel $user=null;
     public View $view;
+    public ContactForm $contactForm;
     //public ?Controller $controller = null;
     public function __construct($rootPath, array $config)
     {
@@ -32,7 +34,7 @@ class Application
         $this->view = new View();
 
         $this->db= new Database($config['db']);
-
+        $this->contactForm = new ContactForm();
 
         $primaryValue = $this->session->get('user');
 //        echo '<pre>';
@@ -56,6 +58,7 @@ class Application
 
             echo $this->router->resolve();
         }catch (\Exception $e){
+            var_dump($e);
             $this->response->setStatusCode($e->getCode());
             echo $this->view->renderView('_error', [
                 'exception' => $e

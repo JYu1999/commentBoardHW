@@ -24,6 +24,11 @@ class Session
         
     }
 
+//    public function destroySession(){
+//        session_unset();
+//        session_destroy();
+//    }
+
     public function setFlash($key, $message)
     {
         $_SESSION[self::FLASH_KEY][$key] =[

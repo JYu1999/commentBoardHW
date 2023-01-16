@@ -5,6 +5,7 @@ namespace app\models;
 use app\core\Application;
 use app\core\db\DbModel;
 use app\core\Model;
+use PDO;
 
 class ContactForm extends DbModel
 {
@@ -49,11 +50,18 @@ class ContactForm extends DbModel
 
     public function send()
     {
-        echo '<pre>';
-        var_dump(Application::$app->user->id);
-        echo '</pre>';
+//        echo '<pre>';
+//        var_dump(Application::$app->user->id);
+//        echo '</pre>';
         //exit;
         $this->created_by = Application::$app->user->id;
         return parent::save();
+    }
+    public function findPosts($user_id){
+        $tableName = $this->tableName();
+        //$statement = self::prepare("SELECT * FROM $tableName WHERE created_by=$user_id;");
+        $statement = Application::$app->db->pdo->query("SELECT * FROM $tableName WHERE created_by=$user_id");
+        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
     }
 }
