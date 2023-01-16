@@ -74,19 +74,7 @@ use app\core\Application;
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 
-<?php
-//echo '<pre>';
-//var_dump(Application::$app->contactForm->findPosts(Application::$app->user->id));
-//echo '</pre>';
-$posts =Application::$app->contactForm->findPosts(Application::$app->user->id);
-foreach ($posts as $post){
-    echo '<pre>';
-    echo $post["subject"].PHP_EOL;
-    echo $post["body"].PHP_EOL;
-    echo '</pre>';
-}
 
-?>
 
 
 
