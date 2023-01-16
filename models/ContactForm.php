@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\db\DbModel;
 use app\core\Model;
 
@@ -10,6 +11,7 @@ class ContactForm extends DbModel
     public string $subject = '';
     public string $email = '';
     public string $body = '';
+    public int $created_by=0;
 
     public function tableName(): string
     {
@@ -19,7 +21,7 @@ class ContactForm extends DbModel
     public function attributes(): array
     {
         // TODO: Implement attributes() method.
-        return ['subject', 'body'];
+        return ['subject', 'body', 'created_by'];
     }
     public function primaryKey(): string
     {
@@ -47,6 +49,11 @@ class ContactForm extends DbModel
 
     public function send()
     {
+        echo '<pre>';
+        var_dump(Application::$app->user->id);
+        echo '</pre>';
+        //exit;
+        $this->created_by = Application::$app->user->id;
         return parent::save();
     }
 }

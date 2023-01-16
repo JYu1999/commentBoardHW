@@ -41,8 +41,12 @@ class Application
 //        exit;
         if($primaryValue){
             $primaryKey =(new $this->userClass)->primaryKey();
-            
+            echo '<pre>';
+            var_dump($primaryValue);
+            echo '</pre>';
+            //exit;
             $this->user = (new $this->userClass)->findOne([$primaryKey=>$primaryValue]);
+            
         }
     }
 
